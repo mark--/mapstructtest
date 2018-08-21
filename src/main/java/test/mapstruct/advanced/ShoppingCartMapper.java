@@ -2,8 +2,10 @@ package test.mapstruct.advanced;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 import org.mapstruct.AfterMapping;
+import org.mapstruct.Context;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -27,7 +29,7 @@ public interface ShoppingCartMapper {
 	@Mapping(target = "priority", source = "type")
 	@Mapping(target = "source", constant = "HR43")
 	@Mapping(target = "owner", defaultValue = "system")
-	ShoppingCartDTO toDTO(ShoppingCart shoppingCart);
+	ShoppingCartDTO toDTO(ShoppingCart shoppingCart, @Context Locale locale);
 
 	@Mapping(target = "items", ignore = true)
 	@InheritInverseConfiguration
@@ -75,13 +77,13 @@ public interface ShoppingCartMapper {
 	}
 
 	@Named("ust")
-	default String itemTotalUST(List<Item> items) {
+	default String itemTotalUST(List<Item> items, @Context Locale locale) {
 		return items.stream()
 				.map(Item::getPrice)
 				.map(Price::getValue)
 				.reduce(BigDecimal.ZERO, BigDecimal::add)
 				.multiply(BigDecimal.valueOf(1.19))
-				.toString();
+				.toString() + " " + locale.getCountry();
 
 	}
 

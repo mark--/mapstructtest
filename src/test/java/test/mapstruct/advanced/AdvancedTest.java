@@ -3,6 +3,7 @@ package test.mapstruct.advanced;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -42,7 +43,7 @@ public class AdvancedTest {
 
 		System.out.println(shoppingCart);
 
-		ShoppingCartDTO dto = ShoppingCartMapper.INSTANCE.toDTO(shoppingCart);
+		ShoppingCartDTO dto = ShoppingCartMapper.INSTANCE.toDTO(shoppingCart, Locale.GERMANY);
 
 		System.out.println(dto);
 
