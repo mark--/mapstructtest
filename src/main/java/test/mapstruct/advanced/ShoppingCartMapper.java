@@ -29,7 +29,7 @@ public interface ShoppingCartMapper {
 	@Mapping(target = "priority", source = "type")
 	@Mapping(target = "source", constant = "HR43")
 	@Mapping(target = "owner", defaultValue = "system")
-	ShoppingCartDTO toDTO(ShoppingCart shoppingCart, @Context Locale locale);
+	ShoppingCartDTO toDTO(ShoppingCart shoppingCart, @Context Locale locale) throws TooManyItemsException;
 
 	@Mapping(target = "items", ignore = true)
 	@InheritInverseConfiguration
@@ -67,7 +67,11 @@ public interface ShoppingCartMapper {
 	}
 
 	@Named("woust")
-	default String itemTotal(List<Item> items) {
+	default String itemTotal(List<Item> items) throws TooManyItemsException {
+
+		if (items.size() > 2) {
+			throw new TooManyItemsException();
+		}
 		return items.stream()
 				.map(Item::getPrice)
 				.map(Price::getValue)
