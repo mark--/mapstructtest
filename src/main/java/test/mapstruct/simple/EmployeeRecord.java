@@ -1,34 +1,33 @@
-package test.mapstruct;
+package test.mapstruct.simple;
 
-public class EmployeeDTO
+public class EmployeeRecord
 {
 
-    private String id;
+    private String employeeId;
     private String firstName;
     private String familyName;
-
     private String phone;
 
-    private int referenceNumber;
+    private String reference;
 
-    public int getReferenceNumber()
+    public String getReference()
     {
-        return referenceNumber;
+        return reference;
     }
 
-    public void setReferenceNumber(int referenceNumber)
+    public void setReference(String reference)
     {
-        this.referenceNumber = referenceNumber;
+        this.reference = reference;
     }
 
-    public String getId()
+    public String getEmployeeId()
     {
-        return id;
+        return employeeId;
     }
 
-    public void setId(String id)
+    public void setEmployeeId(String employeeId)
     {
-        this.id = id;
+        this.employeeId = employeeId;
     }
 
     public String getFirstName()
@@ -64,8 +63,8 @@ public class EmployeeDTO
     @Override
     public String toString()
     {
-        return "EmployeeDTO [id=" + id + ", firstName=" + firstName + ", familyName=" + familyName
-            + ", phone=" + phone + ", referenceNumber=" + referenceNumber + "]";
+        return "EmployeeRecord [employeeId=" + employeeId + ", firstName=" + firstName + ", familyName="
+            + familyName + ", phone=" + phone + ", reference=" + reference + "]";
     }
 
 }

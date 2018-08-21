@@ -1,4 +1,4 @@
-package test.mapstruct;
+package test.mapstruct.simple;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

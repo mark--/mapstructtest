@@ -1,18 +1,13 @@
-package test.mapstruct;
+package test.mapstruct.simple;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringTest
+import test.mapstruct.simple.EmployeeDTO;
+import test.mapstruct.simple.EmployeeMapper;
+import test.mapstruct.simple.EmployeeRecord;
+
+public class MapperTest
 {
-
-    @Autowired
-    private EmployeeMapper employeeMapper;
 
     @Test
     public void simple()
@@ -24,7 +19,7 @@ public class SpringTest
         employeeDTO.setPhone("+49 5435 5454");
         employeeDTO.setReferenceNumber(4324);
 
-        EmployeeRecord employeeRecord = employeeMapper.from(employeeDTO);
+        EmployeeRecord employeeRecord = EmployeeMapper.INSTANCE.from(employeeDTO);
 
         System.out.println(employeeRecord);
 
@@ -41,7 +36,7 @@ public class SpringTest
         employeeRecord.setPhone("phone");
         employeeRecord.setReference("563453");
 
-        EmployeeDTO employee = employeeMapper.from(employeeRecord);
+        EmployeeDTO employee = EmployeeMapper.INSTANCE.from(employeeRecord);
 
         System.out.println(employee);
 

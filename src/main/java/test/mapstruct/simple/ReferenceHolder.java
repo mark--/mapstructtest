@@ -1,4 +1,4 @@
-package test.mapstruct;
+package test.mapstruct.simple;
 
 public class ReferenceHolder
 {
