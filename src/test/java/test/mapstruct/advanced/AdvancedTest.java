@@ -7,10 +7,15 @@ import java.util.Locale;
 
 import org.junit.Test;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AdvancedTest {
 
 	@Test
 	public void advanced1() throws TooManyItemsException {
+		LOG.info("Test started");
+
 		ShoppingCart shoppingCart = new ShoppingCart();
 
 		shoppingCart.setId(43);
@@ -19,27 +24,19 @@ public class AdvancedTest {
 		shoppingCart.setItems(items);
 		shoppingCart.setType(ShoppingCartType.VIP);
 
-		{
-			Item item = new Item();
-			item.setName("Banane");
-			Price price = new Price();
-			price.setCurrency("EUR");
-			price.setValue(BigDecimal.valueOf(12.3));
-			item.setPrice(price);
-			item.setQuantity(2);
-			items.add(item);
-		}
+		items.add(
+				Item.builder()
+						.name("Banana")
+						.price(Price.builder().currency("EUR").value(BigDecimal.valueOf(12.3)).build())
+						.quantity(2)
+						.build());
 
-		{
-			Item item = new Item();
-			item.setName("Orange");
-			Price price = new Price();
-			price.setCurrency("DOL");
-			price.setValue(BigDecimal.valueOf(16.5));
-			item.setPrice(price);
-			item.setQuantity(3);
-			items.add(item);
-		}
+		items.add(
+				Item.builder()
+						.name("Orange")
+						.price(Price.builder().currency("DOL").value(BigDecimal.valueOf(22.4)).build())
+						.quantity(3)
+						.build());
 
 		System.out.println(shoppingCart);
 
@@ -61,38 +58,26 @@ public class AdvancedTest {
 		shoppingCart.setItems(items);
 		shoppingCart.setType(ShoppingCartType.VIP);
 
-		{
-			Item item = new Item();
-			item.setName("Banane");
-			Price price = new Price();
-			price.setCurrency("EUR");
-			price.setValue(BigDecimal.valueOf(12.3));
-			item.setPrice(price);
-			item.setQuantity(2);
-			items.add(item);
-		}
+		items.add(
+				Item.builder()
+						.name("Banana")
+						.price(Price.builder().currency("EUR").value(BigDecimal.valueOf(12.3)).build())
+						.quantity(2)
+						.build());
 
-		{
-			Item item = new Item();
-			item.setName("Orange");
-			Price price = new Price();
-			price.setCurrency("DOL");
-			price.setValue(BigDecimal.valueOf(16.5));
-			item.setPrice(price);
-			item.setQuantity(3);
-			items.add(item);
-		}
+		items.add(
+				Item.builder()
+						.name("Orange")
+						.price(Price.builder().currency("DOL").value(BigDecimal.valueOf(22.4)).build())
+						.quantity(3)
+						.build());
 
-		{
-			Item item = new Item();
-			item.setName("Orange");
-			Price price = new Price();
-			price.setCurrency("DOL");
-			price.setValue(BigDecimal.valueOf(16.5));
-			item.setPrice(price);
-			item.setQuantity(3);
-			items.add(item);
-		}
+		items.add(
+				Item.builder()
+						.name("Strawberry")
+						.price(Price.builder().currency("EUR").value(BigDecimal.valueOf(12.3)).build())
+						.quantity(2)
+						.build());
 
 		System.out.println(shoppingCart);
 
